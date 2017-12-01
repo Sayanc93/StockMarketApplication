@@ -1,0 +1,22 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  pool: 14
+  reaping_frequency: 10
+
+development:
+  <<: *defaults
+  database: balbis_development
+
+test: &test
+  <<: *defaults
+  database: balbis_test
+
+
+production:
+  <<: *defaults
+  database: balbis_production

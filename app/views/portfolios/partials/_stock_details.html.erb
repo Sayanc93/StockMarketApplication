@@ -1,0 +1,37 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="hero-widget well well-sm">
+    <div class="icon">
+      <span class="glyphicon glyphicon-signal"></span>
+    </div>
+    <div class="panel panel-default">
+      <%= form_tag(portfolio_details_path, method: :post) do %>
+        <!-- Table -->
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th class="col-md-3 text-center">Company</th>
+              <th class="col-md-3 text-center">Buying Price</th>
+              <th class="col-md-3 text-center">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% current_user.portfolios.each do |portfolio| %>
+            <tr>
+              <td>
+                <pre><%= portfolio.company.name %></pre>
+              </td>
+              <td>
+                <%= number_field "stock_company[#{portfolio.company.name}]", nil, value: portfolio.buying_stock_price, class: "form-control", required: true %>
+              </td>
+              <td>
+                <%= number_field "stock_company[#{portfolio.company.name}]", nil, value: portfolio.number, class: "form-control", required: true %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary form-control">Submit</button>
+      <% end %>
+    </div>
+  </div>
+</div>

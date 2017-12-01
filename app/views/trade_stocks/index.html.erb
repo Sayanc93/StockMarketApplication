@@ -1,0 +1,73 @@
+<%= provide(:title, 'Add Transaction') %>
+<div class="jumbotron container">
+  <div class="pull-left">
+    <a href="/dashboards">
+      <span class="glyphicon glyphicon-menu-left"></span> <%= link_to 'Go to Dashboard', dashboards_path %>
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-2 col-md-offset-1 text-center">
+        <span class="head-style">Company</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="head-style">Shares</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="head-style">Brokerage</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="head-style">Date</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <span class="head-style">Price</span>
+      </div>
+    <div class="col-md-12 form-group">
+      <div class="col-md-2 col-md-offset-1 text-center">
+          <%= text_field "stock_company", nil, class: "form-control typeahead", placeholder: "Type a company name", required: true %>
+      </div>
+      <div class="col-md-2">
+          <%= text_field "shares", nil, class: "form-control", placeholder: "Quantity", required: true %>
+        </li>
+      </div>
+      <div class="col-md-2">
+          <%= text_field "brokerage", nil, class: "form-control", placeholder: "In %", required: true %>
+      </div>
+      <div class="col-md-2">
+          <%= text_field "date", nil, class: "form-control", placeholder: "mmmm dd,yyyy", required: true %>
+      </div>
+      <div class="col-md-2">
+          <%= text_field "price", nil, class: "form-control", placeholder: "Per Share", required: true %>
+      </div>
+    <div class="col-md-12">
+      <div class="col-md-6 col-md-offset-6 add-margin">
+        <label class="radio-inline radio-container">
+          <%= radio_button_tag 'stock_company', true %>
+          <span class="checkmark"></span>
+          In %
+        </label>
+        <label class="radio-inline radio-container">
+          <%= radio_button_tag 'stock_company', true %>
+          <span class="checkmark"></span>
+          In Rupees
+        </label>
+      </div>
+    </div>
+    <div class="col-md-12 add-margin">
+      <div class="col-md-3 col-md-offset-6 text-center">
+        <span class="head-style align-center">Buy</span>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <span class="head-style align-center">Sell</span>
+      </div>
+      <div class="col-md-2 input-group">
+        <button class="btn btn-primary">Save</button>
+        <span>                               </span>
+        <button class="btn btn-primary">Cancel</button>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

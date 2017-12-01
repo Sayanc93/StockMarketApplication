@@ -1,0 +1,96 @@
+<div class="col-md-12">
+  <div class="well well-lg">
+    <div class="col-md-4"></div>
+    <% @market_data.each do |market| %>
+      <div class="col-md-2 text-center">
+        <div class="add-cadet-blue"><%= market.name %></div>
+        <div>
+          <span class="add-cadet-blue"><%= market.current_value %></span>
+          <%= market.is_high_glyphicon? %>
+          <span class="add-cadet-blue"><%= market.percent_change %></span>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-2 text-center">
+      <div class="add-cadet-blue">My Portfolio</div>
+      <span class="add-cadet-blue"><%= @user_portfolio_data.current_value %></span>
+        <%=  @user_portfolio_data.is_high_glyphicon? %>
+        <span class="add-cadet-blue"><%= @user_portfolio_data.represent_percent_change %></span>
+    </div>
+    <div class="panel panel-default">
+      <!-- Table -->
+      <table class="table" data-toggle="table">
+        <thead>
+          <tr>
+            <th class="col-sm-3 text-center noborder head-style" data-sortable="true">Company (<%= @user_portfolio_data.total_companies %>)</th>
+            <th class="col-sm-3 text-center noborder head-style" data-sortable="true"><span class="pull-right">Investment (%)</span></th>
+            <th class="col-sm-1 text-center noborder head-style">Nos</th>
+            <th class="col-sm-1 text-center noborder head-style">LBP</th>
+            <th class="col-sm-1 text-center noborder head-style">ABP</th>
+            <th class="col-sm-2 text-center noborder head-style">Total (%)</th>
+            <th class="col-sm-4 text-center noborder head-style">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user_company_data.each do |company| %>
+            <tr>
+              <td class="noborder">
+                <p class="add-cadet-blue"><%= company.company_name %></p>
+              </td>
+              <td class="noborder pull-right">
+                <p><%= company.investment %> <%= company.percent_share_of_total_investment(@user_portfolio_data.total_investment) %></p>
+              </td>
+              <td class="noborder text-center">
+                <p><%= company.number %></p>
+              </td>
+              <td class="noborder text-center">
+
+                <p>751</p>
+              </td>
+              <td class="noborder text-center">
+                <p>754</p>
+              </td>
+              <td class="noborder text-center">
+                <%= company.is_high_glyphicon? %> <%= company.total_percent_change %>
+              </td>
+              <td class="noborder text-center">
+                <p><%= company.current_value %></p>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="container">
+      <div class="col-sm-1 text-center head-style">
+          <span>Total/Avg</span>
+      </div>
+      <div class="col-sm-3 col-sm-offset-2 head-style">
+        <span class="pull-right"><%= @user_portfolio_data.total_investment %> (100.0 %)</span>
+      </div>
+      <div class="col-sm-1 text-center head-style">
+        <span><%= @user_portfolio_data.total_quantity %></span>
+      </div>
+      <div class="col-sm-1 text-center head-style">
+        <span>751</span>
+      </div>
+      <div class="col-sm-1 text-center head-style">
+        <span>754</span>
+      </div>
+      <div class="col-sm-2 text-center head-style">
+        <%= @user_portfolio_data.is_high_glyphicon? %> <%= @user_portfolio_data.represent_percent_change %>
+      </div>
+      <div class="col-sm-1 text-center head-style">
+        <span><%= @user_portfolio_data.current_value %> </span>
+      </div>
+    </div>
+    <div class="container add-margin">
+      <div class="col-sm-12">
+        <div class="add-margin">
+          <%= link_to "Edit/Add Stocks", edit_user_path(current_user.id), class: "btn btn-primary" %>
+          <%= link_to "Add Transaction", trade_stocks_path, class: "btn btn-primary pull-right" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
